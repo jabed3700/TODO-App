@@ -36,11 +36,12 @@ class Todos extends React.Component{
             },
         ],
         isOpenTodoForm:false,
-        searchTerm:''
+        searchTerm:'',
+        view:'list'
     }
     toggleSelect = todoId =>{
         const todos = [...this.state.todos] 
-        const todo = todos.find(t=>t.id ===todoId) 
+        const todo = todos.find(t=>t.id === todoId) 
         todo.isSelect = !todo.isSelect;
 
         this.setState({todos})
@@ -67,7 +68,32 @@ class Todos extends React.Component{
         const todos = [todo, ...this.state.todos] 
         this.setState({todos})
         this.toggleForm()
+    }
 
+    handleFilter = ()=>{};
+    changeView = event=>{
+        this.setState({
+            view:event.target.value
+        })
+    };
+    clearSelected = () =>{};
+    clearCompleted = () =>{};
+    reset = () =>{}
+
+    getView = ()=>{
+        return this.state.view === 'list' ? (
+        <ListView 
+            todos={this.state.todos}
+            toggleSelect={this.toggleSelect}
+            toggleComplete={this.toggleComplete}
+            />
+        ):(
+            <TableView 
+            todos={this.state.todos}
+            toggleSelect={this.toggleSelect}
+            toggleComplete={this.toggleComplete}
+            />
+        )
     }
     render(){
         return(
@@ -75,22 +101,20 @@ class Todos extends React.Component{
                 <h1 className="display-4 text-center mb-4">Todo Application</h1>
                 <Controller
                     term={this.state.searchTerm} 
+                    view= {this.state.view}
                     toggleForm = {this.toggleForm}
                     handleSearch = {this.handleSearch}
+                    handleFilter = {this.handleFilter}
+                    changeView = {this.changeView}
+                    clearSelected = {this.clearSelected}
+                    clearCompleted = {this.clearCompleted}
+                    reset = {this.reset}
                     
                 />
                 <div className="mt-4">
-                    <ListView todos={this.state.todos}
-                    toggleSelect={this.toggleSelect}
-                    toggleComplete={this.toggleComplete}
-                    />
+                   {this.getView()}
                 </div>
-                <div className="">
-                    <TableView todos={this.state.todos}
-                    toggleSelect={this.toggleSelect}
-                    toggleComplete={this.toggleComplete}
-                    />
-                </div>
+               
 
                 <Modal
                     isOpen = {this.state.isOpenTodoForm}
