@@ -10,7 +10,7 @@ const RowItem = ({todo,toggleSelect,toggleComplete})=>(
             type = 'checkbox'
             id={todo.id}
             checked={todo.isSelect}
-            onchange = {()=>toggleSelect(todo.id)}
+            onChange = {()=>toggleSelect(todo.id)}
             />
         </th>
         <th>
@@ -18,8 +18,8 @@ const RowItem = ({todo,toggleSelect,toggleComplete})=>(
         </th>
         <th>{todo.text}</th>
         <th>
-            <Button color={todo.isComplete ? 'danger':'success'} onclick={()=>toggleComplete(todo.id)}>
-            {todo.isComplete?'Completed':'Running'}
+            <Button color={todo.isComplete ? 'danger':'success'} onClick={()=>toggleComplete(todo.id)}>              
+                {todo.isComplete ? 'Completed':'Running'}
             </Button>
         </th>
     </tr>

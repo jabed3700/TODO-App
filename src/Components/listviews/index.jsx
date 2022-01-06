@@ -7,7 +7,7 @@ const ListItem = ({todo,toggleSelect,toggleComplete})=>{
     return(
         <ListGroupItem className="d-flex align-items-center">
             <Input
-            type='checkbox'
+            type = 'checkbox'
             id={todo.id}
             checked={todo.isSelect}
             onChange = {()=>toggleSelect(todo.id)}
