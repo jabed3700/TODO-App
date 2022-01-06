@@ -2,7 +2,7 @@ import React from "react";
 import {Form,FormGroup,Input,Button,Label,} from "reactstrap"
 import PropTypes from "prop-types";
 
-class CreateTodoFrom extends React.Component{
+class CreateTodoForm extends React.Component{
     state={
         text:'',
         description:''
@@ -38,7 +38,7 @@ class CreateTodoFrom extends React.Component{
                         type="textarea" 
                         placeholder="Write some short description about your task"
                         name='description'
-                        value={this.state.text}
+                        value={this.state.description}
                         onChange={this.handleChange}
                     />
                 </FormGroup>
@@ -52,4 +52,4 @@ CreateTodoForm.propTypes={
     createTodo:PropTypes.func.isRequired
 }
 
-export default CreateTodoFrom;
+export default CreateTodoForm;
