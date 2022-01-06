@@ -23,7 +23,7 @@ const ListItem = ({todo,toggleSelect,toggleComplete})=>{
     )
 }
 
-ListItem.prototype ={
+ListItem.propTypes ={
     todo:PropTypes.object.isRequired,
     toggleSelect: PropTypes.func.isRequired,
     toggleComplete: PropTypes.func.isRequired,
@@ -45,7 +45,7 @@ const ListView = ({todos,toggleSelect,toggleComplete})=>{
     )
 }
 
-ListView.prototype ={
+ListView.propTypes ={
     todos:PropTypes.object.isRequired,
     toggleSelect: PropTypes.func.isRequired,
     toggleComplete: PropTypes.func.isRequired,
