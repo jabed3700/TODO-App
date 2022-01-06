@@ -1,29 +1,29 @@
 import React from "react";
 import PropTypes from 'prop-types'
-import { ListGroup,ListGroupItem, CustomInput,Button } from "reactstrap";
-import Todos from "../todos";
+import { ListGroup,ListGroupItem, Input,Button } from "reactstrap";
+// import todo from "../todo";
 
-const Listitem = ({todo,toggleSelect,toggleComplete})=>{
+const ListItem = ({todo,toggleSelect,toggleComplete})=>{
     return(
         <ListGroupItem className="d-flex align-items-center">
-            <CustomInput
+            <Input
             type='checkbox'
-            id={Todos.id}
-            checked={Todos.isSelect}
+            id={todo.id}
+            checked={todo.isSelect}
             onChange = {()=>toggleSelect(todo.id)}
             />
             <div className="mx-3">
                 <h4>{todo.text}</h4>
                 <p>{todo.time.toDateString()}</p>
             </div>
-            <Button className="ml-auto" color={todo.isComplete ? 'danger':'success'} onClick={()=>toggleComplete(todo.id)}>
+            <Button className="ms-auto" color={todo.isComplete ? 'danger':'success'} onClick={()=>toggleComplete(todo.id)}>
                 {todo.isComplete ? 'Completed':'Running'}
             </Button>
         </ListGroupItem>
     )
 }
 
-ListItem.PropTypes ={
+ListItem.prototype ={
     todo:PropTypes.object.isRequired,
     toggleSelect: PropTypes.func.isRequired,
     toggleComplete: PropTypes.func.isRequired,
@@ -34,7 +34,7 @@ const ListView = ({todos,toggleSelect,toggleComplete})=>{
     return(
         <ListGroup>
             {todos.map(todo=>(
-                <Listitem 
+                <ListItem 
                     key={todo.id}
                     todo={todo}
                     toggleSelect = {toggleSelect}
@@ -45,8 +45,8 @@ const ListView = ({todos,toggleSelect,toggleComplete})=>{
     )
 }
 
-ListView.PropTypes ={
-    todo:PropTypes.object.isRequired,
+ListView.prototype ={
+    todos:PropTypes.object.isRequired,
     toggleSelect: PropTypes.func.isRequired,
     toggleComplete: PropTypes.func.isRequired,
 }
