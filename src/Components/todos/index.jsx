@@ -81,9 +81,22 @@ class Todos extends React.Component{
             view:event.target.value
         })
     };
-    clearSelected = () =>{};
-    clearCompleted = () =>{};
-    reset = () =>{}
+    clearSelected = () =>{
+        const todos = this.state.todos.filter(todo=>!todo.isSelect);
+        this.setState({todos})
+    };
+    clearCompleted = () =>{
+        const todos = this.state.todos.filter(todo=>!todo.isComplete);
+        this.setState({todos})
+    };
+    reset = () =>{
+        this.setState({
+            filter:'all',
+            searchTerm:'',
+            view:'list',
+            isOpenTodoForm:false,
+        })
+    }
 
     performSearch = ()=>{
        return this.state.todos.filter(
